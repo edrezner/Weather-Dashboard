@@ -1,0 +1,19 @@
+header {
+    background-image: linear-gradient(to right, rgb(70, 70, 241), rgb(20, 20, 255));
+}
+
+input {
+    display: block;
+}
+
+button {
+    width: 100%
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    color: white;
+    height: 100px;
+    padding-top: 25px;
+}
