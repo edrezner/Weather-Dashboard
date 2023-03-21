@@ -1,5 +1,5 @@
-header {
-    background-image: linear-gradient(to right, rgb(70, 70, 241), rgb(20, 20, 255));
+body {
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 }
 
 input {
@@ -21,4 +21,11 @@ hr {
     color: white;
     height: 100px;
     padding-top: 25px;
+    background-image: linear-gradient(to right, rgb(87, 87, 238), rgb(1, 1, 73));
+}
+
+.fc {
+    background-color:rgb(51, 51, 87);
+    color: white;
+    height: 250px
 }
