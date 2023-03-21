@@ -4,10 +4,15 @@ header {
 
 input {
     display: block;
+    width: 90%;
 }
 
 button {
-    width: 100%
+    width: 90%
+}
+
+hr {
+    width: 90%;
 }
 
 .header {
