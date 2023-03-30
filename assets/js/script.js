@@ -1,36 +1,50 @@
-var search = $(".search");
+var button = $("button");
 
 // append buttons with last 8 city searches under search button
-var aside = $(".aside");
+var historyDiv = $(".history");
 var cityArray = JSON.parse(localStorage.getItem("City")) || [];
 for (i = 0; i < cityArray.length; i++) {
-    var cityBtn = $("<button class='m-2'>");
+    var cityBtn = $("<button class='m-2 historyBtn'>");
     cityBtn.text(cityArray[i]);
-    aside.append(cityBtn);
+    historyDiv.append(cityBtn);
 }
 
+// set string for eventual API call to either search history buttons or search button next to input field
+$(".historyBtn").click(function () {
+    var cityString = $(this).text();
+    weatherForecast(cityString);
+});
 
-search.click(function () {
-    // Set input string into api call
+$(".search").click(function () {
     var cityString = $("input").val().trim();
+    weatherForecast(cityString);
+})
 
-    // save last 8 searches in local storage
+
+function weatherForecast(cityString) {
+    var content = $(".content");
+    content.empty();
+
+    // save last 8 searches in local storage and add button to search history under search button
+    
     var recentSearches = JSON.parse(localStorage.getItem("City")) || [];
-    if (recentSearches.length > 7) {
-        recentSearches.pop();
-    }
+    var zeroIndexBtn = $("<button class='m-2'>");
 
+    // ensures only 8 total searh results are in the array 
     if (!recentSearches.includes(cityString)) {
         recentSearches.unshift(cityString);
+        zeroIndexBtn.text(cityString);
+        historyDiv.prepend(zeroIndexBtn);
+    }
+
+    if (recentSearches.length > 8) {
+        recentSearches.pop();
+        historyDiv.children().last().remove();
     }
 
     localStorage.setItem("City", JSON.stringify(recentSearches));
 
-    // var zeroIndexBtn = $("<button class='m-2'>");
-    // zeroIndexBtn.text(cityArray[0]);
-    // aside.append(zeroIndexBtn);
-
-    var apiCall = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityString + "&exclude=hourly&appid=c0c7982eea1a651cf4a03ef899b1c02f&units=imperial"
+    var apiCall = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityString + "&appid=c0c7982eea1a651cf4a03ef899b1c02f&units=imperial"
 
     fetch(apiCall)
         .then(response => response.json())
@@ -41,9 +55,6 @@ search.click(function () {
             // $("input").val("");
 
             // create top portion of dashboard with city name, date, weather icon, temp, wind, and humidity
-            var content = $(".content");
-            content.innerHTML = "";
-
             var topDiv = $("<div>").addClass("border border-dark m-3");
             content.append(topDiv);
 
@@ -103,5 +114,5 @@ search.click(function () {
                 fcCard.append(fcHumid);
             }
         })
-})
+}
 
