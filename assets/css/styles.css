@@ -5,10 +5,14 @@ body {
 input {
     display: block;
     width: 90%;
+    border-radius: 5px;
 }
 
 button {
-    width: 90%
+    width: 90%;
+    border-radius: 5px;
+    height: 40px;
+    font-weight: bold;
 }
 
 hr {
@@ -21,11 +25,36 @@ hr {
     color: white;
     height: 100px;
     padding-top: 25px;
-    background-image: linear-gradient(to right, rgb(87, 87, 238), rgb(1, 1, 73));
+    background-image: linear-gradient(to right, rgb(42, 92, 156), rgb(1, 1, 73));
 }
 
 .fc {
     background-color:rgb(51, 51, 87);
     color: white;
     height: 250px
+}
+
+.search {
+    color: white;
+    background-color: rgb(110, 136, 255);
+}
+
+.historyBtn {
+    background-color: rgba(189, 189, 189, 0.925);
+}
+
+.historyBtn:hover {
+    color: white;
+    background-color: rgb(110, 136, 255);
+}
+
+@media screen and (max-width: 1160px) {
+    .fc {
+        max-width: fit-content;
+    }
+
+    input, button {
+        max-width: fit-content;
+        max-height: fit-content;
+    }
 }
